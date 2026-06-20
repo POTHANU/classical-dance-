@@ -1,0 +1,1826 @@
+/* ==========================================================================
+   Nritya Sadhana - Core Design System & Stylesheet
+   ========================================================================== */
+
+/* Variables & Design Tokens */
+:root {
+  --color-maroon-deep: #2C080E;
+  --color-maroon-bright: #4E0C17;
+  --color-maroon-dark: #1A0306;
+  --color-gold-antique: #D4AF37;
+  --color-gold-burnished: #AA7C11;
+  --color-gold-light: #ECCB76;
+  --color-ivory: #FAF6F0;
+  --color-ivory-dim: #D4C9BC;
+  --color-charcoal: #130305;
+  --color-onyx: #0C0203;
+  --color-glass-bg: rgba(44, 8, 14, 0.45);
+  --color-glass-border: rgba(212, 175, 55, 0.25);
+  
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-cinzel-dec: 'Cinzel Decorative', Georgia, serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  
+  --transition-slow: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-medium: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: all 0.3s ease;
+}
+
+/* Reset & Scrollbar */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: initial; /* Essential for Lenis smooth scroll */
+  background-color: var(--color-onyx);
+  color: var(--color-ivory);
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: var(--color-onyx);
+}
+
+/* Typography Helper Classes */
+.font-cinzel { font-family: var(--font-cinzel); }
+.font-cinzel-dec { font-family: var(--font-cinzel-dec); }
+.font-montserrat { font-family: var(--font-montserrat); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+}
+
+p {
+  color: var(--color-ivory-dim);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-onyx);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-burnished);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
+}
+
+/* ==========================================================================
+   ACT 1: Preloader & Curtains
+   ========================================================================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.preloader-curtain {
+  position: absolute;
+  top: 0;
+  width: 50.5%;
+  height: 100%;
+  background: radial-gradient(circle at center, var(--color-maroon-bright) 0%, var(--color-maroon-deep) 100%);
+  transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.preloader-curtain.left {
+  left: 0;
+}
+
+.preloader-curtain.right {
+  right: 0;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ivory);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Swinging Bell */
+.temple-bell-container {
+  width: 100px;
+  height: 120px;
+  margin-bottom: 25px;
+  position: relative;
+  cursor: pointer;
+}
+
+.temple-bell-svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  animation: bellSwing 3s ease-in-out infinite alternate;
+}
+
+@keyframes bellSwing {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+/* Ring Soundwaves */
+.sound-wave {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--color-gold-antique);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sound-wave.ping {
+  animation: pingAnimation 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes pingAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+.preloader-title {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.3em;
+  color: var(--color-gold-antique);
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.preloader-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: var(--color-ivory-dim);
+  margin-bottom: 30px;
+}
+
+.preloader-loading-bar {
+  width: 200px;
+  height: 2px;
+  background: var(--color-maroon-dark);
+  position: relative;
+  border-radius: 1px;
+}
+
+.bar-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--color-gold-light);
+  box-shadow: 0 0 8px var(--color-gold-light);
+  transition: width 0.3s ease;
+}
+
+/* Body unlocked state class */
+body.loaded #preloader .preloader-curtain.left {
+  transform: translateX(-100%);
+}
+body.loaded #preloader .preloader-curtain.right {
+  transform: translateX(100%);
+}
+body.loaded #preloader .preloader-content {
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0.2s;
+}
+body.loaded #preloader {
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s 1.2s;
+}
+
+/* ==========================================================================
+   Background particle canvas & motifs
+   ========================================================================== */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#scroll-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 5;
+}
+
+.act-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-gold-antique);
+  letter-spacing: 0.3em;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--color-ivory);
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+.section-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-ivory-dim);
+  letter-spacing: 0.1em;
+  margin-top: 10px;
+}
+
+.accent-line {
+  width: 60px;
+  height: 2px;
+  background: var(--color-gold-antique);
+  margin: 20px auto 0 auto;
+  position: relative;
+}
+
+.accent-line::before, .accent-line::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-gold-light);
+  border-radius: 50%;
+}
+.accent-line::before { left: -10px; }
+.accent-line::after { right: -10px; }
+
+/* ==========================================================================
+   Luxury Navigation Header
+   ========================================================================== */
+.luxury-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 5%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(12, 2, 3, 0.9) 0%, rgba(12, 2, 3, 0) 100%);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  transform: translateY(-100%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.loaded .luxury-header {
+  transform: translateY(0);
+}
+
+.header-logo {
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  color: var(--color-ivory);
+  font-weight: 700;
+}
+
+.logo-accent {
+  color: var(--color-gold-antique);
+}
+
+.luxury-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-ivory-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 5px 0;
+  transition: var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 1px;
+  background: var(--color-gold-antique);
+  transition: var(--transition-medium);
+  transform: translateX(-50%);
+}
+
+.nav-link.active, .nav-link:hover {
+  color: var(--color-gold-light);
+}
+
+.nav-link.active::after, .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Gold Button Outline */
+.btn-gold-outline {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 1px solid var(--color-gold-antique);
+  background: transparent;
+  color: var(--color-gold-light);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 0px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.btn-gold-outline:hover {
+  background: var(--color-gold-burnished);
+  color: var(--color-onyx);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* ==========================================================================
+   ACT 1: Hero Section
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-onyx);
+}
+
+.spotlight-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, rgba(26, 3, 6, 0.5) 50%, rgba(12, 2, 3, 1) 100%);
+  z-index: 3;
+  pointer-events: none;
+  animation: pulseSpotlight 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulseSpotlight {
+  0% { opacity: 0.85; }
+  100% { opacity: 1; }
+}
+
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-dancer-img {
+  width: auto;
+  height: 95vh;
+  object-fit: contain;
+  opacity: 0;
+  filter: contrast(1.1) brightness(0.9);
+  transition: opacity 2s ease-in-out;
+  transform: scale(0.95);
+}
+
+body.loaded .hero-dancer-img {
+  opacity: 0.65;
+  transform: scale(1);
+  transition: opacity 2.5s ease-in-out, transform 3s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-tagline {
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  color: var(--color-gold-light);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-title {
+  font-size: 3.8rem;
+  line-height: 1.1;
+  letter-spacing: 0.25em;
+  margin-bottom: 25px;
+  color: var(--color-ivory);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+.word-wrap {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 0.15em;
+}
+
+.hero-title span span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+}
+
+.hero-description {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-cta {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 14px 35px;
+  background-color: var(--color-maroon-bright);
+  border: 1px solid var(--color-gold-antique);
+  color: var(--color-gold-light);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  transition: var(--transition-fast);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold-antique);
+  color: var(--color-maroon-dark);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+}
+
+.cta-arrow {
+  margin-left: 8px;
+  animation: bounceArrow 1.5s infinite alternate;
+}
+
+@keyframes bounceArrow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(5px); }
+}
+
+/* Floating Corner Motifs */
+.hero-corner-motifs .motif {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  z-index: 6;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.hero-corner-motifs .motif.top-left { top: 10%; left: 5%; border-right: none; border-bottom: none; }
+.hero-corner-motifs .motif.top-right { top: 10%; right: 5%; border-left: none; border-bottom: none; }
+.hero-corner-motifs .motif.bottom-left { bottom: 10%; left: 5%; border-right: none; border-top: none; }
+.hero-corner-motifs .motif.bottom-right { bottom: 10%; right: 5%; border-left: none; border-top: none; }
+
+/* ==========================================================================
+   ACT 2: The Legacy
+   ========================================================================== */
+.legacy-section {
+  position: relative;
+  background-color: var(--color-maroon-dark);
+  overflow: hidden;
+}
+
+.section-gold-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at bottom right, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.legacy-grid {
+  display: grid;
+  grid-template-columns: 4.5fr 7.5fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Founder Archway Clip/Mask */
+.founder-archway-container {
+  position: relative;
+  width: 100%;
+}
+
+.temple-arch-mask {
+  width: 100%;
+  height: 480px;
+  border-radius: 200px 200px 0 0; /* Creates the temple arch structure */
+  overflow: hidden;
+  position: relative;
+  border: 3px solid var(--color-gold-antique);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.founder-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 1.5s ease-out;
+}
+
+.arch-gold-trim {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: 0;
+  border-radius: 208px 208px 0 0;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  pointer-events: none;
+}
+
+/* Timeline Components */
+.timeline-container {
+  position: relative;
+  padding-left: 50px;
+}
+
+.timeline-svg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 10px;
+  height: 100%;
+}
+
+.timeline-svg-line {
+  width: 100%;
+  height: 100%;
+}
+
+.timeline-events {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.timeline-event {
+  position: relative;
+}
+
+.timeline-bullet {
+  position: absolute;
+  left: -35px;
+  top: 15px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-onyx);
+  border: 2px solid var(--color-gold-antique);
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.timeline-content-card {
+  background-color: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+}
+
+.timeline-date {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  margin-bottom: 5px;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  color: var(--color-ivory);
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+}
+
+.timeline-desc {
+  font-size: 0.85rem;
+  color: var(--color-ivory-dim);
+}
+
+/* ==========================================================================
+   ACT 3: Sacred Learning
+   ========================================================================== */
+.courses-section {
+  background-color: var(--color-onyx);
+  position: relative;
+  overflow: hidden;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.course-card {
+  background-color: var(--color-maroon-deep);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  position: relative;
+  overflow: hidden;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-slow);
+}
+
+.course-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  background: radial-gradient(circle at center, var(--color-maroon-bright) 0%, var(--color-maroon-dark) 100%);
+}
+
+/* Fallback SVG for offline/blocked image situations */
+.fallback-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  opacity: 0.25;
+  color: var(--color-gold-light);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.temple-arch-mask {
+  background: radial-gradient(circle at center, var(--color-maroon-bright) 0%, var(--color-maroon-dark) 100%);
+  position: relative;
+}
+
+.gallery-mask {
+  background: radial-gradient(circle at center, var(--color-maroon-deep) 0%, var(--color-onyx) 100%);
+  position: relative;
+}
+
+.course-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(0.7);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.course-shade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, var(--color-maroon-deep) 0%, transparent 100%);
+}
+
+.course-card-content {
+  position: relative;
+  padding: 30px;
+  z-index: 3;
+  background-color: var(--color-maroon-deep);
+}
+
+.course-tag {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-antique);
+  margin-bottom: 8px;
+}
+
+.course-name {
+  font-size: 1.4rem;
+  color: var(--color-ivory);
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+
+.course-desc {
+  font-size: 0.85rem;
+  color: var(--color-ivory-dim);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.course-relic-icon {
+  position: absolute;
+  right: 25px;
+  top: -20px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--color-gold-antique);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-maroon-deep);
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Gold Frame Draw Effect on Scroll (GSAP class) */
+.card-border-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid transparent;
+  pointer-events: none;
+  z-index: 5;
+  transition: border-color 0.8s ease;
+}
+
+.course-card.glow-active .card-border-glow {
+  border-color: var(--color-gold-antique);
+  box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.1), 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+/* ==========================================================================
+   ACT 4: The Performance (Gallery Stage)
+   ========================================================================== */
+.gallery-section {
+  background-color: var(--color-charcoal);
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-spotlight {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(ellipse at top center, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Masonry Layout */
+.masonry-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 240px;
+  gap: 25px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item.size-tall {
+  grid-row: span 2;
+}
+
+.gallery-item.size-wide {
+  grid-column: span 2;
+}
+
+.gallery-mask {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--color-onyx);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: saturate(85%) brightness(0.75);
+}
+
+/* Circular Spotlight overlay per image that scales out on reveal */
+.spotlight-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--spotlight-x, -20%) var(--spotlight-y, -20%), transparent var(--spotlight-r, 0%), rgba(12, 2, 3, 0.98) var(--spotlight-f, 40%));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.gallery-item-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px;
+  background: linear-gradient(to top, rgba(12, 2, 3, 0.9) 0%, transparent 100%);
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: var(--transition-medium);
+}
+
+.gallery-item:hover .gallery-item-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.caption-title {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
+  margin-bottom: 3px;
+}
+
+.caption-tag {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory-dim);
+}
+
+/* ==========================================================================
+   ACT 5: Voices of the Journey (Testimonials)
+   ========================================================================== */
+.testimonials-section {
+  background-color: var(--color-maroon-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-bg-motifs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-image: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+  border: 1px dashed rgba(212, 175, 55, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.carousel-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonial-carousel {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+
+.testimonial-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95) translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s 0.8s;
+}
+
+.testimonial-card.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+  transition-delay: 0.1s;
+}
+
+/* Glassmorphism Details */
+.glass-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.quote-icon {
+  font-size: 2.2rem;
+  color: var(--color-gold-antique);
+  opacity: 0.3;
+  margin-bottom: 20px;
+}
+
+.testimonial-quote {
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-ivory);
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author-name {
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
+  letter-spacing: 0.1em;
+}
+
+.author-title {
+  font-size: 0.75rem;
+  color: var(--color-ivory-dim);
+  margin-top: 5px;
+}
+
+/* Carousel Automatic Progress indicator */
+.carousel-progress-container {
+  width: 120px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 30px auto 0 auto;
+  position: relative;
+  border-radius: 1px;
+}
+
+.carousel-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--color-gold-antique);
+  box-shadow: 0 0 6px var(--color-gold-light);
+}
+
+/* ==========================================================================
+   ACT 6: The Legacy Continues (Stats)
+   ========================================================================== */
+.impact-section {
+  background-color: var(--color-onyx);
+  position: relative;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-item.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 70px; /* center relative to the 140px height progress ring */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  pointer-events: none;
+}
+
+.stat-item.reveal-active::before {
+  opacity: 1;
+}
+
+.stat-progress-ring {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-circle {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-bar-path {
+  stroke-dasharray: 283; /* 2 * PI * r (r=45) */
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 2s ease-out;
+}
+
+.stat-number {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+}
+
+.stat-title {
+  font-size: 1.1rem;
+  color: var(--color-ivory);
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+}
+
+.stat-desc {
+  font-size: 0.8rem;
+  max-width: 250px;
+}
+
+/* ==========================================================================
+   ACT 7: Join the Journey (Contact Section)
+   ========================================================================== */
+.join-section {
+  background-color: var(--color-maroon-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.join-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.join-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 50px;
+  align-items: start;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Contact Form Double Border */
+.contact-form-container {
+  background-color: var(--color-maroon-deep);
+  padding: 50px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.form-border-double {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 4px double var(--color-gold-antique);
+  pointer-events: none;
+}
+
+.form-title {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 35px;
+  color: var(--color-gold-light);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Custom Floating Input Styling */
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input, 
+.input-group textarea, 
+.input-group select {
+  width: 100%;
+  padding: 12px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-ivory);
+  font-family: var(--font-montserrat);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.input-group select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus, 
+.input-group select:focus {
+  border-bottom-color: var(--color-gold-antique);
+}
+
+.input-group label {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  color: var(--color-ivory-dim);
+  pointer-events: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  transition: var(--transition-fast);
+}
+
+/* Active Float Label logic */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+  top: -12px;
+  font-size: 0.65rem;
+  color: var(--color-gold-light);
+  letter-spacing: 0.2em;
+}
+
+/* Active select label fix */
+.input-group select:focus ~ .select-label,
+.input-group select:valid ~ .select-label {
+  top: -12px;
+  font-size: 0.65rem;
+  color: var(--color-gold-light);
+  letter-spacing: 0.2em;
+}
+
+.input-group .error-msg {
+  position: absolute;
+  bottom: -18px;
+  left: 10px;
+  font-size: 0.65rem;
+  color: #E25C5C;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.input-group.invalid input,
+.input-group.invalid textarea {
+  border-bottom-color: #E25C5C;
+}
+
+.input-group.invalid .error-msg {
+  opacity: 1;
+}
+
+/* Custom Dropdown Arrow */
+.input-group select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-gold-antique) 50%), linear-gradient(135deg, var(--color-gold-antique) 50%, transparent 50%);
+  background-position: calc(100% - 15px) 18px, calc(100% - 10px) 18px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  border: 1px solid var(--color-gold-antique);
+  color: var(--color-gold-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition-fast);
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-gold-antique);
+  color: var(--color-maroon-dark);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Location details / Canvas Map mockup */
+.location-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.map-mockup-frame {
+  background-color: var(--color-maroon-deep);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.canvas-map-wrapper {
+  width: 100%;
+  height: 250px;
+  background-color: var(--color-maroon-dark);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+#map-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.location-details {
+  padding: 30px;
+}
+
+.location-details h4 {
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
+  margin-bottom: 15px;
+  letter-spacing: 0.15em;
+}
+
+.location-details p {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.location-details i {
+  color: var(--color-gold-antique);
+  margin-right: 8px;
+}
+
+/* Sacred Quote Callout */
+.closing-quote-container {
+  margin-top: 90px;
+  text-align: center;
+  position: relative;
+  padding: 0 10%;
+}
+
+.sacred-blockquote {
+  font-size: 1.8rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-gold-light);
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.sacred-cite {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: var(--color-ivory-dim);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.sacred-translation {
+  font-size: 0.85rem;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(245, 239, 235, 0.6);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   FOOTER: The Final Bow
+   ========================================================================== */
+.final-bow-footer {
+  background-color: var(--color-onyx);
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.temple-silhouettes {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spire-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.footer-blessing-container {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.shanti-mantra {
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  color: var(--color-gold-antique);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  margin-bottom: 15px;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: rgba(245, 239, 235, 0.4);
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet (Portrait & Landscape) */
+@media screen and (max-width: 1024px) {
+  .luxury-header {
+    padding: 15px 3%;
+  }
+  
+  .luxury-nav {
+    display: none; /* Hide full nav, keep logo and CTA in simple luxury presentation */
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .legacy-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .temple-arch-mask {
+    height: 400px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .courses-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin: 40px auto 0 auto;
+  }
+
+  .courses-grid .course-card {
+    height: 420px;
+  }
+
+  .masonry-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+  
+  .gallery-item.size-wide {
+    grid-column: span 1;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .join-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .location-container {
+    height: auto;
+  }
+
+  .location-details {
+    padding: 20px;
+  }
+
+  .closing-quote-container {
+    padding: 0 5%;
+  }
+
+  .sacred-blockquote {
+    font-size: 1.4rem;
+  }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 580px) {
+  .container {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 2.0rem;
+    letter-spacing: 0.15em;
+  }
+
+  .preloader-title {
+    font-size: 1.6rem;
+  }
+
+  .preloader-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .masonry-gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .gallery-item.size-tall {
+    grid-row: span 1;
+  }
+
+  .contact-form-container {
+    padding: 30px 15px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .sacred-blockquote {
+    font-size: 1.15rem;
+  }
+}
+
+/* ==========================================================================
+   High-End Cinematic Storytelling Animations
+   ========================================================================== */
+
+/* Slow rotating mandala in the background of sections */
+.bg-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  width: min(60vw, 550px);
+  height: min(60vw, 550px);
+  color: var(--color-gold-antique);
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  animation: slowMandalaRotate 140s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes slowMandalaRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Gold Shimmer Text Transition */
+.shimmer-text {
+  background: linear-gradient(to right, var(--color-ivory) 20%, var(--color-gold-light) 40%, var(--color-gold-antique) 60%, var(--color-ivory) 80%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: metallicShimmer 6s linear infinite;
+}
+
+@keyframes metallicShimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* Floating Diyya Canvas inside footer */
+#diyya-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fallback/IntersectionObserver Reveal States */
+.course-card, .timeline-content-card, .gallery-item {
+  opacity: 0;
+  transform: translateY(45px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.course-card.reveal-active, .timeline-content-card.reveal-active, .gallery-item.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item {
+  transform: translateY(50px) scale(0.98);
+}
+.gallery-item.reveal-active {
+  transform: translateY(0) scale(1);
+}
+
+/* Volumetric Ray Effect */
+.volumetric-light-ray {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(236, 203, 118, 0.04) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: top left;
+  animation: lightSway 12s ease-in-out infinite alternate;
+}
+
+@keyframes lightSway {
+  0% { transform: skewX(-4deg) translateX(-0.5%); opacity: 0.6; }
+  100% { transform: skewX(5deg) translateX(0.5%); opacity: 0.9; }
+}
+
+/* Cinematic Scene Transition Overlay */
+#transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, rgba(12, 2, 3, 0.96) 80%);
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Ambient Fog Drift */
+.ambient-fog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(44, 8, 14, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 2;
+  animation: fogDrift 20s ease-in-out infinite alternate;
+  filter: blur(25px);
+}
+
+@keyframes fogDrift {
+  0% { transform: scale(1) translate(0px, 0px); opacity: 0.6; }
+  50% { transform: scale(1.08) translate(3%, -2%); opacity: 0.85; }
+  100% { transform: scale(1) translate(-2%, 3%); opacity: 0.6; }
+}
+
+/* Footer Mandala Styling */
+.footer-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  width: min(80vw, 420px);
+  height: min(80vw, 420px);
+  color: var(--color-gold-antique);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  animation: slowMandalaRotate 140s linear infinite;
+  transform-origin: center center;
+}
+
+/* Dynamic Theatrical Lighting System */
+.lighting-mood {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.lighting-mood.active {
+  opacity: 0.85;
+}
+
+.lighting-hero {
+  background: radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.22) 0%, transparent 60%);
+}
+
+.lighting-legacy {
+  background: radial-gradient(circle at 80% 30%, rgba(212, 175, 55, 0.16) 0%, rgba(170, 124, 17, 0.06) 40%, transparent 70%);
+}
+
+.lighting-performance {
+  background: radial-gradient(circle at 20% 20%, rgba(236, 203, 118, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(78, 12, 23, 0.28) 0%, transparent 50%);
+}
+
+.lighting-contact {
+  background: radial-gradient(circle at 50% 90%, rgba(236, 203, 118, 0.2) 0%, rgba(44, 8, 14, 0.12) 50%, transparent 80%);
+}
+
+/* Luxury Word Reveal */
+.reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Luxury Quotes Line Reveal */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.reveal-line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* Character Stagger Reveal */
+.reveal-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(15px) scale(0.9);
+}
+
+/* Decorative Ornament Soft Shimmer */
+.ornament-shimmer {
+  animation: ornamentPulse 6s ease-in-out infinite;
+}
+
+@keyframes ornamentPulse {
+  0%, 100% { filter: drop-shadow(0 0 0px transparent); opacity: 0.35; }
+  50% { filter: drop-shadow(0 0 8px var(--color-gold-light)); opacity: 0.8; }
+}
+
+/* Gopuram silhouette starting state for fade-in reveal */
+.temple-silhouettes {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+/* Final black overlay at the very bottom */
+.final-fade-black {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, var(--color-onyx) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 6;
+}
+

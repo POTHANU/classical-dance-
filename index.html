@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nritya Sadhana | Academy of Classical Indian Dance</title>
+  <meta name="description" content="Experience the theatrical, ultra-premium journey of classical Indian dance. Explore the legacy, sacred disciplines, and performances of Nritya Sadhana.">
+  
+  <!-- Google Fonts: Cinzel & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for Luxury Accents -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Act 1 Preloader / Curtain -->
+  <div id="preloader" role="alert" aria-busy="true">
+    <div class="preloader-curtain left"></div>
+    <div class="preloader-curtain right"></div>
+    <div class="preloader-content">
+      <div class="temple-bell-container" id="bell-trigger">
+        <svg class="temple-bell-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ornate Bell Design -->
+          <path d="M50 15 C45 15, 42 10, 50 10 C58 10, 55 15, 50 15 Z" fill="#D4AF37"/>
+          <path d="M50 15 C30 20, 25 45, 25 70 C25 75, 20 80, 20 85 C20 90, 80 90, 80 85 C80 80, 75 75, 75 70 C75 45, 70 20, 50 15 Z" fill="url(#goldGradient)" stroke="#AA7C11" stroke-width="1"/>
+          <circle cx="50" cy="98" r="7" fill="#ECCB76" />
+          <path d="M48 90 L48 98 M52 90 L52 98" stroke="#AA7C11" stroke-width="2"/>
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ECCB76" />
+              <stop offset="50%" stop-color="#D4AF37" />
+              <stop offset="100%" stop-color="#AA7C11" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="sound-wave"></div>
+      </div>
+      <h1 class="preloader-title font-cinzel-dec">NRITYA SADHANA</h1>
+      <p class="preloader-subtitle font-montserrat">THE AWAKENING OF SOUL THROUGH MOTION</p>
+      <div class="preloader-loading-bar">
+        <div class="bar-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Particle Canvas for Ambient Gold Dust -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Transition Overlay for Cinematic Scene Changes -->
+  <div id="transition-overlay"></div>
+
+  <!-- Main Scrollable Container -->
+  <div id="scroll-wrapper">
+
+    <!-- Global Navigation -->
+    <header class="luxury-header">
+      <div class="header-logo font-cinzel-dec">
+        <span class="logo-accent">N</span>ritya <span class="logo-accent">S</span>adhana
+      </div>
+      <nav class="luxury-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link font-montserrat active">The Awakening</a>
+        <a href="#legacy" class="nav-link font-montserrat">The Legacy</a>
+        <a href="#sacred-learning" class="nav-link font-montserrat">Sacred Learning</a>
+        <a href="#performance" class="nav-link font-montserrat">Performance</a>
+        <a href="#voices" class="nav-link font-montserrat">Voices</a>
+        <a href="#join" class="nav-link font-montserrat">Join Us</a>
+      </nav>
+      <div class="header-cta-wrapper">
+        <a href="#join" class="btn-gold-outline font-montserrat">Enter Sanctuary</a>
+      </div>
+    </header>
+
+    <!-- ACT 1: THE AWAKENING (Hero Section) -->
+    <section id="hero" class="hero-section">
+      <div class="spotlight-overlay"></div>
+      <div class="hero-bg-container">
+        <img src="assets/hero_dancer.png" alt="Classical Bharatanatyam Dancer in spotlight" class="hero-dancer-img">
+      </div>
+      <div class="hero-content">
+        <div class="hero-tagline font-montserrat" id="hero-tag">A SACRED INVOCATION OF MOVEMENT</div>
+        <h2 class="hero-title font-cinzel-dec" id="hero-main-title">
+          <span class="word-wrap"><span>N</span><span>R</span><span>I</span><span>T</span><span>Y</span><span>A</span></span>
+          <span class="word-wrap"><span>S</span><span>A</span><span>D</span><span>H</span><span>A</span><span>N</span><span>A</span></span>
+        </h2>
+        <p class="hero-description font-montserrat">
+          Step into a sanctuary where ancient stone whispers meet divine choreographies, tracing thousands of years of classical Indian heritage, luxury, and spiritual storytelling.
+        </p>
+        <div class="hero-cta">
+          <a href="#legacy" class="btn-primary font-montserrat">
+            Begin the Journey <i class="fa-solid fa-chevron-down cta-arrow"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-corner-motifs">
+        <div class="motif top-left"></div>
+        <div class="motif top-right"></div>
+        <div class="motif bottom-left"></div>
+        <div class="motif bottom-right"></div>
+      </div>
+    </section>
+
+    <!-- ACT 2: THE LEGACY (Our Story Section) -->
+    <section id="legacy" class="legacy-section">
+      <svg class="bg-mandala" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="1, 4" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-dasharray="3, 1" stroke-width="0.3" fill="none"/>
+        <path d="M50,5 C52,20 48,20 50,5 Z M50,95 C52,80 48,80 50,95 Z M5,50 C20,52 20,48 5,50 Z M95,50 C80,52 80,48 95,50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <path d="M18,18 C30,30 25,35 18,18 Z M82,82 C70,70 75,65 82,82 Z M18,82 C30,70 25,65 18,82 Z M82,18 C70,30 75,35 82,18 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+      </svg>
+      <div class="section-gold-mask"></div>
+      <div class="container">
+        <div class="section-header">
+          <span class="act-label font-montserrat">ACT II</span>
+          <h2 class="section-title font-cinzel">The Legacy</h2>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="legacy-grid">
+          <!-- Founder Archway Mask -->
+          <div class="founder-archway-container">
+            <div class="temple-arch-mask">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Bharatanatyam_-_Indian_classical_dance.jpg" alt="Founder Portrait inside Temple Arch" class="founder-image">
+            </div>
+            <div class="arch-gold-trim"></div>
+          </div>
+
+          <!-- Timeline content -->
+          <div class="timeline-container">
+            <div class="timeline-svg-wrapper">
+              <!-- SVG path that draws itself on scroll -->
+              <svg class="timeline-svg-line" viewBox="0 0 10 600" preserveAspectRatio="none">
+                <path d="M5,0 L5,600" stroke="#D4AF37" stroke-width="2" fill="none" id="scroll-timeline-path" />
+              </svg>
+            </div>
+
+            <div class="timeline-events">
+              <div class="timeline-event" id="event-1">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content-card">
+                  <span class="timeline-date font-cinzel">1998</span>
+                  <h3 class="timeline-title font-cinzel">The Foundation</h3>
+                  <p class="timeline-desc font-montserrat">
+                    Nritya Sadhana was founded by Guru Rukmini Devi's disciples inside a small temple courtyard, aiming to preserve the sacred purity of classical styles.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-event" id="event-2">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content-card">
+                  <span class="timeline-date font-cinzel">2008</span>
+                  <h3 class="timeline-title font-cinzel">The Global Stage</h3>
+                  <p class="timeline-desc font-montserrat">
+                    The academy performed at the Royal Albert Hall, bridging Indian temple heritage with international performing arts.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-event" id="event-3">
+                <div class="timeline-bullet"></div>
+                <div class="timeline-content-card">
+                  <span class="timeline-date font-cinzel">2018</span>
+                  <h3 class="timeline-title font-cinzel">The Digital Archives</h3>
+                  <p class="timeline-desc font-montserrat">
+                    Digitizing ancient dance mudras, creating an open sanctuary for students globally to study shastras and choreographies.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 3: THE SACRED LEARNING (Courses Section) -->
+    <section id="sacred-learning" class="courses-section">
+      <svg class="bg-mandala" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="1, 4" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-dasharray="3, 1" stroke-width="0.3" fill="none"/>
+        <path d="M50,5 C52,20 48,20 50,5 Z M50,95 C52,80 48,80 50,95 Z M5,50 C20,52 20,48 5,50 Z M95,50 C80,52 80,48 95,50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <path d="M18,18 C30,30 25,35 18,18 Z M82,82 C70,70 75,65 82,82 Z M18,82 C30,70 25,65 18,82 Z M82,18 C70,30 75,35 82,18 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+      </svg>
+      <div class="container">
+        <div class="section-header">
+          <span class="act-label font-montserrat">ACT III</span>
+          <h2 class="section-title font-cinzel">The Sacred Learning</h2>
+          <p class="section-subtitle font-montserrat">Disciplines presented as museum-grade relics of motion</p>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="courses-grid">
+          <!-- Course Card 1 -->
+          <div class="course-card font-cinzel">
+            <div class="card-border-glow"></div>
+            <div class="course-image-wrapper">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Bharatanatyam_-_Indian_classical_dance.jpg" alt="Bharatanatyam Dancer Posing" class="course-image">
+              <div class="course-shade"></div>
+            </div>
+            <div class="course-card-content">
+              <span class="course-tag font-montserrat">SHANDILYA PATH</span>
+              <h3 class="course-name">Bharatanatyam</h3>
+              <p class="course-desc font-montserrat">
+                Originating from the temples of Tamil Nadu, focusing on geometric precision, expression (Abhinaya), and rhythm (Tala).
+              </p>
+              <div class="course-relic-icon">
+                <i class="fa-solid fa-yin-yang"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Card 2 -->
+          <div class="course-card font-cinzel">
+            <div class="card-border-glow"></div>
+            <div class="course-image-wrapper">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Odissi_Performance_DS.jpg" alt="Odissi Classical Dancer pose" class="course-image">
+              <div class="course-shade"></div>
+            </div>
+            <div class="course-card-content">
+              <span class="course-tag font-montserrat">GHUNGHROO PATH</span>
+              <h3 class="course-name">Kathak</h3>
+              <p class="course-desc font-montserrat">
+                From Northern India's royal courts, characterized by rapid footwork, rhythmic spins, and storytelling postures.
+              </p>
+              <div class="course-relic-icon">
+                <i class="fa-solid fa-dharmachakra"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Card 3 -->
+          <div class="course-card font-cinzel">
+            <div class="card-border-glow"></div>
+            <div class="course-image-wrapper">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Kuchipudi_Nruthya_Tapasvi_from_India.jpg" alt="Kuchipudi Satyabhama pose" class="course-image">
+              <div class="course-shade"></div>
+            </div>
+            <div class="course-card-content">
+              <span class="course-tag font-montserrat">TARANGAM PATH</span>
+              <h3 class="course-name">Kuchipudi</h3>
+              <p class="course-desc font-montserrat">
+                Originating from Andhra Pradesh, a highly dramatic dance-drama form characterized by quick footwork and brass plate balancing choreographies.
+              </p>
+              <div class="course-relic-icon">
+                <i class="fa-solid fa-om"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 4: THE PERFORMANCE (Gallery Section) -->
+    <section id="performance" class="gallery-section">
+      <svg class="bg-mandala" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="1, 4" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-dasharray="3, 1" stroke-width="0.3" fill="none"/>
+        <path d="M50,5 C52,20 48,20 50,5 Z M50,95 C52,80 48,80 50,95 Z M5,50 C20,52 20,48 5,50 Z M95,50 C80,52 80,48 95,50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <path d="M18,18 C30,30 25,35 18,18 Z M82,82 C70,70 75,65 82,82 Z M18,82 C30,70 25,65 18,82 Z M82,18 C70,30 75,35 82,18 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+      </svg>
+      <div class="gallery-spotlight"></div>
+      <div class="container">
+        <div class="section-header">
+          <span class="act-label font-montserrat">ACT IV</span>
+          <h2 class="section-title font-cinzel">The Performance Stage</h2>
+          <p class="section-subtitle font-montserrat">Capturing transient, physical poetry in motion</p>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="masonry-gallery">
+          <div class="gallery-item size-tall">
+            <div class="gallery-mask">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Bharatanatyam_-_Indian_classical_dance.jpg" alt="Bharatanatyam Dance posture shadow" class="gallery-img">
+              <div class="spotlight-reveal"></div>
+              <div class="gallery-item-caption">
+                <span class="caption-title font-cinzel">Abhinaya</span>
+                <span class="caption-tag font-montserrat">EXPRESSION</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-item size-wide">
+            <div class="gallery-mask">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Kuchipudi_Nruthya_Tapasvi_from_India.jpg" alt="Kuchipudi Satyabhama pose closeup" class="gallery-img">
+              <div class="spotlight-reveal"></div>
+              <div class="gallery-item-caption">
+                <span class="caption-title font-cinzel">Mudras</span>
+                <span class="caption-tag font-montserrat">POETRY OF HANDS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="gallery-mask">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Odissi_Performance_DS.jpg" alt="Odissi Classical Dancer pose" class="gallery-img">
+              <div class="spotlight-reveal"></div>
+              <div class="gallery-item-caption">
+                <span class="caption-title font-cinzel">Rasa</span>
+                <span class="caption-tag font-montserrat">EMOTION</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-item size-tall">
+            <div class="gallery-mask">
+              <svg class="fallback-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2,2"/>
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="15"/>
+                <path d="M50,10 Q45,25 50,40 Q55,25 50,10 Z" />
+                <path d="M50,90 Q45,75 50,60 Q55,75 50,90 Z" />
+                <path d="M10,50 Q25,45 40,50 Q25,55 10,50 Z" />
+                <path d="M90,50 Q75,45 60,50 Q75,55 90,50 Z" />
+              </svg>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Kuchipudi_artists_performing_the_traditional_dance.jpg" alt="Kuchipudi Artists Performing Stage Dance" class="gallery-img">
+              <div class="spotlight-reveal"></div>
+              <div class="gallery-item-caption">
+                <span class="caption-title font-cinzel">Tarangam</span>
+                <span class="caption-tag font-montserrat">DEVOTION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 5: THE VOICES OF THE JOURNEY (Testimonials Section) -->
+    <section id="voices" class="testimonials-section">
+      <svg class="bg-mandala" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="1, 4" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-dasharray="3, 1" stroke-width="0.3" fill="none"/>
+        <path d="M50,5 C52,20 48,20 50,5 Z M50,95 C52,80 48,80 50,95 Z M5,50 C20,52 20,48 5,50 Z M95,50 C80,52 80,48 95,50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <path d="M18,18 C30,30 25,35 18,18 Z M82,82 C70,70 75,65 82,82 Z M18,82 C30,70 25,65 18,82 Z M82,18 C70,30 75,35 82,18 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+      </svg>
+      <div class="testimonials-bg-motifs"></div>
+      <div class="container">
+        <div class="section-header">
+          <span class="act-label font-montserrat">ACT V</span>
+          <h2 class="section-title font-cinzel">Voices of the Journey</h2>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="carousel-wrapper">
+          <div class="testimonial-carousel" id="testimonial-carousel">
+            
+            <!-- Slide 1 -->
+            <div class="testimonial-card active">
+              <div class="glass-bg"></div>
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="testimonial-quote font-montserrat">
+                "Nritya Sadhana is not just an academy; it is a sacred temple of wisdom. The dedication of the gurus here has transformed my understanding of dance into a divine sadhana."
+              </p>
+              <div class="testimonial-author">
+                <span class="author-name font-cinzel">Aishwarya Iyer</span>
+                <span class="author-title font-montserrat">Alumna, Lead Soloist at Singapore Arts</span>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-card">
+              <div class="glass-bg"></div>
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="testimonial-quote font-montserrat">
+                "The attention to shastric scriptural detail and the rigorous posture standards are unparalleled. Experiencing their performance felt like watching stone architecture come to life."
+              </p>
+              <div class="testimonial-author">
+                <span class="author-name font-cinzel">Prof. Devendra Sharma</span>
+                <span class="author-title font-montserrat">Sanskrit & Cultural Heritage Scholar</span>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-card">
+              <div class="glass-bg"></div>
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="testimonial-quote font-montserrat">
+                "Learning Kathak here has been a beautiful journey of discovering speed and silence. The aesthetic experience is luxury personified, both in teaching and performance."
+              </p>
+              <div class="testimonial-author">
+                <span class="author-name font-cinzel">Vikram Malhotra</span>
+                <span class="author-title font-montserrat">Student, Professional Performing Artist</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Carousel Progress Bar -->
+          <div class="carousel-progress-container">
+            <div class="carousel-progress-bar" id="carousel-progress"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 6: THE LEGACY CONTINUES (Stats / Impact Section) -->
+    <section id="impact" class="impact-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="act-label font-montserrat">ACT VI</span>
+          <h2 class="section-title font-cinzel">The Legacy Continues</h2>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="stats-grid">
+          <!-- Stat item 1 -->
+          <div class="stat-item">
+            <div class="stat-progress-ring">
+              <svg viewBox="0 0 100 100" class="progress-circle">
+                <circle cx="50" cy="50" r="45" stroke="#2C080E" stroke-width="6" fill="transparent" />
+                <circle cx="50" cy="50" r="45" stroke="#D4AF37" stroke-width="6" fill="transparent" class="progress-bar-path" data-progress="95" />
+              </svg>
+              <div class="stat-number font-cinzel" data-target="25">0</div>
+            </div>
+            <h3 class="stat-title font-cinzel">Years of Sadhana</h3>
+            <p class="stat-desc font-montserrat">A quarter century of preserving divine traditions.</p>
+          </div>
+
+          <!-- Stat item 2 -->
+          <div class="stat-item">
+            <div class="stat-progress-ring">
+              <svg viewBox="0 0 100 100" class="progress-circle">
+                <circle cx="50" cy="50" r="45" stroke="#2C080E" stroke-width="6" fill="transparent" />
+                <circle cx="50" cy="50" r="45" stroke="#D4AF37" stroke-width="6" fill="transparent" class="progress-bar-path" data-progress="88" />
+              </svg>
+              <div class="stat-number font-cinzel" data-target="150">0</div>
+            </div>
+            <h3 class="stat-title font-cinzel">Global Concerts</h3>
+            <p class="stat-desc font-montserrat">Performances spanning across major world capitals.</p>
+          </div>
+
+          <!-- Stat item 3 -->
+          <div class="stat-item">
+            <div class="stat-progress-ring">
+              <svg viewBox="0 0 100 100" class="progress-circle">
+                <circle cx="50" cy="50" r="45" stroke="#2C080E" stroke-width="6" fill="transparent" />
+                <circle cx="50" cy="50" r="45" stroke="#D4AF37" stroke-width="6" fill="transparent" class="progress-bar-path" data-progress="92" />
+              </svg>
+              <div class="stat-number font-cinzel" data-target="5000">0</div>
+            </div>
+            <h3 class="stat-title font-cinzel">Disciple Graduates</h3>
+            <p class="stat-desc font-montserrat">Artists trained under traditional Guru-Shishya parampara.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 7: JOIN THE JOURNEY (Contact & Final Invitation) -->
+    <section id="join" class="join-section">
+      <svg class="bg-mandala" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="1, 4" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+        <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-dasharray="3, 1" stroke-width="0.3" fill="none"/>
+        <path d="M50,5 C52,20 48,20 50,5 Z M50,95 C52,80 48,80 50,95 Z M5,50 C20,52 20,48 5,50 Z M95,50 C80,52 80,48 95,50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <path d="M18,18 C30,30 25,35 18,18 Z M82,82 C70,70 75,65 82,82 Z M18,82 C30,70 25,65 18,82 Z M82,18 C70,30 75,35 82,18 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+      </svg>
+      <div class="join-bg-overlay"></div>
+      <div class="container">
+        <div class="section-header">
+          <span class="act-label font-montserrat">ACT VII</span>
+          <h2 class="section-title font-cinzel">Join the Journey</h2>
+          <p class="section-subtitle font-montserrat">Step inside the next chapter of the performance</p>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="join-grid">
+          <!-- Luxury Contact Form -->
+          <div class="contact-form-container">
+            <div class="form-border-double"></div>
+            <h3 class="form-title font-cinzel">Inquire for Admittance</h3>
+            <form id="admittance-form" novalidate>
+              <div class="form-row">
+                <div class="input-group">
+                  <input type="text" id="full-name" required placeholder=" ">
+                  <label for="full-name" class="font-montserrat">YOUR NAME</label>
+                  <span class="error-msg">Name is required</span>
+                </div>
+                <div class="input-group">
+                  <input type="email" id="email" required placeholder=" ">
+                  <label for="email" class="font-montserrat">EMAIL ADDRESS</label>
+                  <span class="error-msg">A valid email is required</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <select id="discipline" required>
+                  <option value="" disabled selected hidden></option>
+                  <option value="bharatanatyam">Bharatanatyam (Pandanalur Path)</option>
+                  <option value="kathak">Kathak (Lucknow Gharana)</option>
+                  <option value="odissi">Odissi (Debaprasad Path)</option>
+                </select>
+                <label for="discipline" class="font-montserrat select-label">CHOOSE DISCIPLINE</label>
+                <span class="error-msg">Please select a path</span>
+              </div>
+
+              <div class="input-group">
+                <textarea id="message" required rows="4" placeholder=" "></textarea>
+                <label for="message" class="font-montserrat">TELL US YOUR ARTISTIC JOURNEY</label>
+                <span class="error-msg">Message is required</span>
+              </div>
+
+              <button type="submit" class="btn-submit font-montserrat">
+                SUBMIT APPLICATION <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Stylized Map / Location Info -->
+          <div class="location-container">
+            <div class="map-mockup-frame">
+              <div class="canvas-map-wrapper">
+                <!-- Custom canvas element that app.js draws a golden map path on -->
+                <canvas id="map-canvas"></canvas>
+              </div>
+              <div class="location-details">
+                <h4 class="font-cinzel">THE SANCTUARY HQ</h4>
+                <p class="font-montserrat">
+                  Temple Niche Chambers, Block A<br>
+                  Aurobindo Marg, New Delhi, India
+                </p>
+                <p class="font-montserrat">
+                  <i class="fa-solid fa-phone"></i> +91 11 4050 6780<br>
+                  <i class="fa-solid fa-envelope"></i> admittance@nrityasadhana.edu
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Final Sacred Quotation -->
+        <div class="closing-quote-container">
+          <blockquote class="sacred-blockquote font-cinzel">
+            "Yato hasta tato drishti, yato drishti tato manah,<br>
+            Yato manah tato bhava, yato bhava tato rasah."
+          </blockquote>
+          <cite class="sacred-cite font-montserrat">— Natya Shastra, Chapter 8</cite>
+          <div class="sacred-translation font-montserrat">
+            "Where the hands go, the eyes follow; where the eyes go, the mind follows;<br>
+            where the mind goes, emotions emerge; where emotions emerge, spiritual essence is experienced."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER: THE FINAL BOW -->
+    <footer class="final-bow-footer">
+      <canvas id="diyya-canvas"></canvas>
+      <div class="temple-silhouettes">
+        <svg class="spire-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Silhouettes of Indian Temple Spires / Gopurams -->
+          <path d="M0,120 L0,100 L50,100 L60,80 L70,80 L80,50 L90,50 L100,20 L110,20 L115,0 L120,20 L130,20 L140,50 L150,50 L160,80 L170,80 L180,100 L250,100 L270,70 L280,70 L290,40 L300,40 L305,10 L310,40 L320,40 L330,70 L350,100 L500,100 L515,60 L520,60 L530,30 L540,30 L545,0 L550,30 L560,30 L570,60 L585,100 L700,100 L710,90 L715,70 L720,70 L730,50 L740,50 L745,20 L750,50 L760,50 L770,70 L775,70 L780,90 L900,90 L910,70 L920,70 L930,40 L940,40 L945,0 L950,40 L960,40 L970,70 L980,70 L990,90 L1200,90 L1200,120 Z" fill="#130305" opacity="0.9"/>
+          <path d="M0,120 L0,110 L150,110 L170,90 L180,90 L190,60 L200,60 L205,30 L210,60 L220,60 L230,90 L250,110 L400,110 L415,80 L420,80 L430,50 L440,50 L445,10 L450,50 L460,50 L470,80 L485,110 L800,110 L810,100 L815,80 L820,80 L830,60 L840,60 L845,30 L850,60 L860,60 L870,80 L875,80 L880,100 L1200,100 L1200,120 Z" fill="#0C0203" opacity="1"/>
+        </svg>
+      </div>
+
+      <div class="footer-blessing-container">
+        <svg class="footer-mandala" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-dasharray="1, 4" stroke-width="0.5" fill="none"/>
+          <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="0.3" fill="none"/>
+          <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-dasharray="3, 1" stroke-width="0.3" fill="none"/>
+          <path d="M50,5 C52,20 48,20 50,5 Z M50,95 C52,80 48,80 50,95 Z M5,50 C20,52 20,48 5,50 Z M95,50 C80,52 80,48 95,50 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+          <path d="M18,18 C30,30 25,35 18,18 Z M82,82 C70,70 75,65 82,82 Z M18,82 C30,70 25,65 18,82 Z M82,18 C70,30 75,35 82,18 Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+          <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        </svg>
+        <div class="shanti-mantra font-cinzel">ॐ शान्तिः शान्तिः शान्तिः</div>
+        <p class="footer-copyright font-montserrat">
+          &copy; 2026 Nritya Sadhana Academy. Created in devotion to heritage and fine classical arts.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- CDN scripts: Lenis, GSAP, ScrollTrigger (loaded safely via jsDelivr with defer) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- Core Javascript -->
+  <script defer src="app.js"></script>
+</body>
+</html>
